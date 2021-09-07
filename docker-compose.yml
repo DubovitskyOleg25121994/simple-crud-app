@@ -1,0 +1,29 @@
+version: "3.3"
+
+services:
+  mongo:
+    container_name: mongo-dev
+    image: mongo:4.2.5-bionic
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: user
+      MONGO_INITDB_ROOT_PASSWORD: secret
+      MONGO_INITDB_DATABASE: simple-crud-app
+      MONGODB_ROOT_PASSWORD: secret
+    volumes:
+      - ./etc/initdb:/docker-entrypoint-initdb.d:ro
+    ports:
+      - 27017:27017
+
+  nest:
+    container_name: nest
+    build:
+      context: ./backend
+    depends_on:
+      - mongo
+    volumes:
+      - ./backend/src:/usr/src/app/src
+    environment:
+      - PORT=3000
+      - MONGO_URL=mongodb://user:secret@mongo:27017/simple-crud-app 
+    command: ["npm", "run", "start:dev"]
