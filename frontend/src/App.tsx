@@ -3,7 +3,7 @@ import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import UserComponent from './views/Users/user.component';
 
 const client = new ApolloClient({
-  uri: 'http://localhost:3000/graphql',
+  uri: process.env.REACT_APP_API_URL,
   cache: new InMemoryCache(),
 });
 
