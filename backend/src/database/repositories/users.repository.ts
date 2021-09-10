@@ -10,8 +10,13 @@ export class UsersRepository {
   }
 
   getUsers(skip: number, limit: number) {
-    return UserModel.find().limit(limit).skip(skip).sort({ _id: 1 })
+    return UserModel.find().limit(limit).skip(skip)
+      .sort({ _id: 1 })
       .exec();
+  }
+
+  getUserCount() {
+    return UserModel.find().count();
   }
 
   getUserByEmail(email: string) {

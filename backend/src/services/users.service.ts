@@ -13,8 +13,13 @@ export class UsersServce {
     return this.usersRepositiry.getUserByID(id);
   }
 
-  getUsers(skip:number, limit:number) {
-    return this.usersRepositiry.getUsers(skip, limit);
+  async getUsers(skip:number, limit:number) {
+    const users = await this.usersRepositiry.getUsers(skip, limit);
+    const userCount = await this.usersRepositiry.getUserCount();
+    return {
+      count: userCount,
+      list: users,
+    };
   }
 
   async createUser(createUserDto: CreateUserDto) {

@@ -9,6 +9,7 @@ import {
 
 import { UsersServce } from '../../services/users.service';
 import { User } from '../schemas/user.schema';
+import { UsersPagination } from '../schemas/users-pagination.schema';
 import { UserIdDto } from '../dto/get-user-by-id.dto';
 import { GetUsersDto } from '../dto/get-users-dto';
 import { CreateUserDto } from '../dto/create-user.dto';
@@ -24,7 +25,7 @@ export class UsersResolver {
     return this.usersServce.getUserByID(id);
   }
 
-  @Query(() => [User], { description: 'Get all users' })
+  @Query(() => UsersPagination, { description: 'Get all users', nullable: true })
   users(@Args() { skip, limit }: GetUsersDto) {
     return this.usersServce.getUsers(skip, limit);
   }

@@ -24,7 +24,7 @@ type Query {
   user(id: ID!): User
 
   """Get all users"""
-  users(limit: Int!, skip: Int!): [User!]!
+  users(limit: Int!, skip: Int!): UsersPagination
 }
 
 input UpdateUserDto {
@@ -36,4 +36,9 @@ type User {
   email: String!
   id: ID!
   name: String!
+}
+
+type UsersPagination {
+  count: Int!
+  list: [User!]!
 }
