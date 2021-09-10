@@ -3,13 +3,16 @@
 ## Бекенд:
 - Node.js + Typescript
 - Typedi
-- Graphql
+- GraphQL
 - MongoDB
 
 ## Фронтенд:
 
 - React + Typescript
-- Redux
+- React-dom
+- Material-ui
+- Apollo/client
+- GraphQL
 
 ## Запуск
 
